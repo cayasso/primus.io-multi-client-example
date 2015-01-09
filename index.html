@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Primus</title>
+  <script src="/primus/primus.io.js"></script>
+</head>
+<body>
+  <h1>
+    Welcome to Primus.IO demo.
+  </h2>
+
+  <script>
+    var primus = new Primus('http://localhost:8080');
+
+    primus.on('open', function(msg){
+      console.log(msg);
+
+      primus.send('chat', { id: 'browser', message: 'Hi I am browser' }, function (data) {
+        console.log('[ %s ]: => %s', data.id, data.message);
+      });
+
+    });
+
+    primus.on('news', function (data) {
+      console.log('[ %s ][ news ]: => %s', data.id, data.message);
+    });
+
+  </script>
+<body>
+</html>
