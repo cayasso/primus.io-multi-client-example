@@ -13,8 +13,7 @@
   <script>
     var primus = new Primus('http://localhost:8080');
 
-    primus.on('open', function(msg){
-      console.log(msg);
+    primus.on('open', function() {
 
       primus.send('chat', { id: 'browser', message: 'Hi I am browser' }, function (data) {
         console.log('[ %s ]: => %s', data.id, data.message);
