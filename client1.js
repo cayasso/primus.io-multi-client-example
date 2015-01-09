@@ -14,3 +14,11 @@ client.send('chat', { id: 'client1', message: 'Hi I am client 1' }, function (da
 client.on('news', function (data) {
   console.log('[ %s ][ news ]: => %s', data.id, data.message);
 });
+
+client.on('reconnecting', function () {
+  console.log('[ client1 ]: => reconnecting');
+});
+
+client.on('reconnected', function () {
+  console.log('[ client1 ]: => reconnected');
+});

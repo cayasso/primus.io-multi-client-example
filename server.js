@@ -20,9 +20,11 @@ primus.on('connection', function connection(spark) {
 
   console.log('connection %s', spark.id);
 
+  primus.send('news', { id: 'server', message: spark.id + ' connected' });
+
   spark.on('chat', function (data, fn) {
     console.log('[ %s ]: => %s', data.id, data.message);
-    fn({ id: 'server', message: 'hi from server' })
+    fn({ id: 'server', message: 'Hi from server' })
   });
 
 });
@@ -30,6 +32,7 @@ primus.on('connection', function connection(spark) {
 // Listen for disconnections.
 primus.on('disconnection', function (spark) {
   console.log('disconnecting %s', spark.id);
+  primus.send('news', { id: 'server', message: spark.id + ' disconnected' });
 });
 
 // Broadcast message every 3 seconds.

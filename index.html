@@ -25,6 +25,14 @@
       console.log('[ %s ][ news ]: => %s', data.id, data.message);
     });
 
+    primus.on('reconnecting', function () {
+      console.log('[ browser ]: => reconnecting');
+    });
+
+    primus.on('reconnected', function () {
+      console.log('[ browser ]: => reconnected');
+    });
+
   </script>
 <body>
 </html>
